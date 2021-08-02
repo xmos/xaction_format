@@ -57,3 +57,26 @@ export function getCommentAuthorAssoc(
     return assoc;
 }
 
+// returns true if comment author is owner, collaborator or member
+export function isCommenterAuthorised(): boolean {
+    const {comment} = context.payload;
+
+    if (comment === undefined)
+        throw new Error('context.payload.comment is undefined.');
+
+    const assoc = getCommentAuthorAssoc(comment);
+
+    const authorised: boolean = [
+        commentAuthorAssoc.COLLABORATOR,
+        commentAuthorAssoc.MEMBER,
+        commentAuthorAssoc.OWNER,
+    ].includes(assoc);
+
+    console.info(
+        `The commenter association is ${assoc}. This command has${
+            authorised ? '' : "n't"
+        } been authorised.`
+    );
+
+    return authorised;
+}
