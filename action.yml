@@ -1,0 +1,28 @@
+name: 'Auto Format'
+description: 'Auto Format your code'
+inputs:
+  file-extensions:
+    description: 'What file extensions to run through auto-formatter'
+    required: true
+  c-style:
+    description: 'Style guide for C-based languages formatted with clang'
+    default: google
+    required: false
+  python-style:
+    description: 'Style guide for python'
+    default: pep8
+    required: false
+  exclude-dirs:
+    description: "Directories you want to exclude from being auto-formatted, relative to repository root"
+    required: false
+    default: ""
+  exclude-files:
+    description: "Files you want to exclude from being auto-formatted, relative to repository root"
+    required: false
+    default: ""
+  token:
+    description: "Token for github"
+    required: true
+runs:
+  using: 'node12'
+  main: 'build/src/index.js'
