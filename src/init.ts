@@ -2,6 +2,7 @@
 import {exec} from '@actions/exec';
 import {requiredBinaries} from './constants';
 import * as core from '@actions/core';
+import {isCommenterAuthorised} from "./authorisation";
 
 export async function hasBin(name: string): Promise<boolean> {
   return exec('which', [name]).then((exitCode: number) => {
@@ -49,6 +50,10 @@ function installPipPackages() {
 }
 
 export async function init(): Promise<void> {
+  if (!isCommenterAuthorised()) {
+    return;
+  }
+
   await ensureDependenciesResolved();
   await installPipPackages();
 }
