@@ -12,7 +12,6 @@ async function checkoutBranch(branch) {
         if (exitCode)
             throw new Error('Failed to fetch from remote.');
         // Checkout branch
-        // TODO: Is this a security vulnerability? Escaping handled by library
         return exec_1.exec('git checkout', [branch]);
     })
         .then((exitCode) => {
