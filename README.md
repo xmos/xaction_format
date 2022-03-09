@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - id: Auto-Format
-        uses: m-salmankhan/solid-barnacle@main
+        uses: xmos/xaction_format@main
         with:
           file-extensions:  |
             c h cpp py
