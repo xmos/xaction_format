@@ -1,5 +1,5 @@
 # xaction_repo
-Github actions for XMOS repos
+Github actions for XMOS repos. Runs commands in comments (e.g. `\format`).
 
 ## Inputs
 * **file-extensions:** The file extensions of files you want to pass through the auto-formatter. Space-delimited string.
@@ -13,7 +13,12 @@ Github actions for XMOS repos
 None, at the moment.
 
 ## Usage Example:
+NB: The action trigger must be comments.
+
 ```yaml
+on:
+  issue_comment:
+    types: [created]
 jobs:
   auto-format:
     if: ${{ github.event.issue.pull_request }}
